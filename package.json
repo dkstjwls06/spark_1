@@ -1,0 +1,23 @@
+{
+  "name": "myts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "concurrently \"cd frontend&&npx webpack -w\" \"cd server&&tsc -w\" \"cd server&&nodemon dist/index.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.1",
+    "concurrently": "^7.0.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "path": "^0.12.7",
+    "webpack": "^5.70.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.2"
+  }
+}
