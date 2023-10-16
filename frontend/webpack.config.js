@@ -39,18 +39,18 @@ module.exports = {
             // }
         ],
     },
-    // optimization: {//최적화
-    //     runtimeChunk: 'single',
-    //     splitChunks: {
-    //         cacheGroups: {
-    //             vendor: {
-    //                 test: /[\\/]node_modules[\\/]/,
-    //                 name: 'vendors',
-    //                 chunks: 'all'
-    //             }
-    //         }
-    //     }
-    // },
+    optimization: {//최적화
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
     resolve: { // 확장자 확인
         extensions: ['.tsx', '.ts', '.js'],
     },

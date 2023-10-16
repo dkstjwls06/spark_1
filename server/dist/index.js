@@ -12,13 +12,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express")); //express
+const express_1 = __importDefault(require("express"));
 const promises_1 = __importDefault(require("fs/promises"));
-const app = (0, express_1.default)();
+const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const http_1 = __importDefault(require("http"));
+const socket_io_1 = require("socket.io");
+const app = (0, express_1.default)();
+const server = http_1.default.createServer(app);
+const io = new socket_io_1.Server(server);
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
-const path_1 = __importDefault(require("path"));
 app.use(/.+\.js$/, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const result = path_1.default.resolve(__dirname, '..', '..', 'frontend', `dist${req.originalUrl}`);
     try {
@@ -36,5 +40,7 @@ app.get('/', (req, res) => {
         root: path_1.default.resolve(__dirname, '..', '..', 'frontend/dist')
     });
 });
-app.listen(80, () => { console.log('Server ready'); });
+server.listen(80, () => {
+    console.log('listening on *:80');
+});
 //# sourceMappingURL=index.js.map

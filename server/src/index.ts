@@ -1,11 +1,16 @@
-import express from 'express' //express
+import express from 'express' 
 import fs from 'fs/promises'
-const app = express()
+import path from 'path'
 import cookieParser from 'cookie-parser'
+import http from 'http'
+import { Server, Socket } from 'socket.io'
+const app = express();
+
+const server = http.createServer(app);
+const io = new Server(server);
+
 app.use(cookieParser());
 app.use(express.json());
-import path from 'path'
-
 app.use(/.+\.js$/, async (req, res, next) => {
     const result = path.resolve(__dirname, '..', '..', 'frontend', `dist${req.originalUrl}`);
     try{
@@ -16,14 +21,15 @@ app.use(/.+\.js$/, async (req, res, next) => {
     } catch(err){
         next();
     }
-})
+});
 
 app.get('/', (req, res) => {
     
     res.sendFile('index.html', {
         root:path.resolve(__dirname,'..','..', 'frontend/dist')
     });
-})
+});
 
-app.listen(80,()=>{console.log('Server ready')});
- 
+server.listen(80,()=>{
+    console.log('listening on *:80');
+});
