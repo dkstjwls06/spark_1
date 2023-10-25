@@ -1,8 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const fs = require('fs');
-
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: { // 파일 시작점 지정
         index: './src/index.ts',
@@ -23,20 +22,14 @@ module.exports = {
                 options: {
                     name: 'img/[contenthash].[ext]'
                 }
-            }
-            // {
-            //     test: /\.(scss|css)$/,
-            //     use: [
-            //         {
-            //             loader: MiniCssExtractPlugin.loader,
-            //             options: {
-            //                 publicPath: ''
-            //             }
-            //         },
-            //         "css-loader", 
-            //         "sass-loader"
-            //     ]
-            // }
+            },
+            {
+                test: /\.(css)$/i,
+                use: [
+                  MiniCssExtractPlugin.loader,
+                  "css-loader"
+                ],
+              },
         ],
     },
     optimization: {//최적화
@@ -59,11 +52,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'), // 경로
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: './[name].css',
+            chunkFilename:'./src/[name].css'
+        }),
         new HtmlWebpackPlugin({
             template:'./src/index.html',
             filename: './index.html',
             chunks:['index']
         }),
+        
     ],
     devServer:{
         contentBase:`${__dirname}/dist`,

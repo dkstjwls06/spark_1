@@ -1,34 +1,158 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>SPARK</title>
     <style>
       *{
         margin: 0;
-        border: 0.1px solid lightblue;
+        
       }
       body{
         width: 100vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
-        background-color: rgb(40, 37, 41);
+        background-color: rgb(69, 64, 70);
+        align-items: center;
       }
-
+    
       header{
         height: 8vh;
       }
-
+    
       main{
         height: 84vh;
+        width: 95vw;
         display: flex;
         flex-direction: row;
+        justify-content: center;
       }
-
+    
       article{
-
+        width: 80%;
+        
+        padding: 1vh;
+      }
+      
+      
+      .fakeMenu {
+        
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        height: 5%;
+        background-color: #bbb;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+      }
+      .fakeButtons {
+        height: 0.75vw;
+        width: 0.75vw;
+        border-radius: 50%;
+        border: 1px solid #000;
+        position: relative;
+        
+        margin: 0 0.3vw;
+        background-color: #ff3b47;
+        border-color: #9d252b;
+        display: inline-block;
       }
 
+      .fakeClose{
+        margin: 0 0.3vw 0 1vw;
+      }
+
+      .fakeMinimize {
+        
+        background-color: #ffc100;
+        border-color: #9d802c;
+      }
+      
+      .fakeZoom {
+        
+        background-color: #00d742;
+        border-color: #049931;
+      }
+
+      #terminal {
+        background-color: #272727;
+        height: 92%;
+        position:relative;
+        padding: .1em 1.5em 1em 1em;
+        color: aliceblue;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      #cmdline {
+        outline: none;
+        background-color: transparent;
+        margin: 0;
+        width: 100%;
+        font: inherit;
+        border: none;
+        color: inherit;
+      }
+      #output {
+          clear: both;
+          width: 100%;
+      }
+      #prompt {
+          white-space: nowrap;
+          display: -webkit-box;
+          -webkit-box-pack: center;
+          -webkit-box-orient: vertical;
+          display: -moz-box;
+          -moz-box-pack: center;
+          -moz-box-orient: vertical;
+          display: box;
+          box-pack: center;
+          box-orient: vertical;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+      }
+      .prompt-color {
+          color: #e09f14;
+      }
+      .input-line {
+          display: -webkit-box;
+          -webkit-box-orient: horizontal;
+          -webkit-box-align: stretch;
+          display: -moz-box;
+          -moz-box-orient: horizontal;
+          -moz-box-align: stretch;
+          display: box;
+          box-orient: horizontal;
+          box-align: stretch;
+          clear: both;
+      }
+      .input-line > div:nth-child(2) {
+          -webkit-box-flex: 1;
+          -moz-box-flex: 1;
+          box-flex: 1;
+      }
+      
+      #githubImg img {
+          position: fixed;
+          bottom: 0; right: 0;
+          border: 0;
+      }
+
+      aside{
+        width: 20%;
+        padding: 0 1vh;
+        display: flex;
+        flex-direction: column;
+      }
+      aside > div{
+        width: 100%;
+        border-radius: 5px;
+        margin: 1vh 0;
+        height: calc((100% - 2vh)/3);
+        background-color: rgb(91, 89, 89);
+      }
+
+    
       footer{
         height: 8vh;
       }
@@ -36,11 +160,24 @@
   </head>
   <body>
     <header>
-      a
+      a    
     </header>
     <main>
       <article>
-        terminal
+        <div class=fakeMenu>
+          <div class="fakeButtons fakeClose"></div>
+          <div class="fakeButtons fakeMinimize"></div>
+          <div class="fakeButtons fakeZoom"></div>
+        </div>
+        <div id="terminal">
+          <div id="output"></div>
+          <div id="input-line" class="input-line">
+              <div id="prompt" class="prompt-color"></div>&nbsp;
+              <div>
+                  <input type="text" id="cmdline" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus/>
+              </div>
+          </div>
+        </div>
       </article>
       <aside>
         <div id="step"></div>
