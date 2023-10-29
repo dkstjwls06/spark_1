@@ -5,6 +5,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: { // 파일 시작점 지정
         index: './src/index.ts',
+        'login/addid' : './src/login/addid.ts',
+        'login/login':'./src/login/login.ts',
+        'login/mail':'./src/login/mail.ts',
+        'login/mailComplete':'./src/login/mailComplete.ts'
     },
     devtool: 'inline-source-map',
     mode:'development',
@@ -61,6 +65,26 @@ module.exports = {
             filename: './index.html',
             chunks:['index']
         }),
+        new HtmlWebpackPlugin({
+            template:'./src/login/login.html',
+            filename: './login/login.html',
+            chunks:['login/login']
+        }),
+        new HtmlWebpackPlugin({
+            template:'./src/login/addid.html',
+            filename: './login/addid.html',
+            chunks:['login/addid']
+        }),
+        new HtmlWebpackPlugin({
+            template:'./src/login/mail.html',
+            filename: './login/mail.html',
+            chunks:['login/mail']
+        }),
+        new HtmlWebpackPlugin({
+            template:'./src/login/mailComplete.html',
+            filename: './login/mailComplete.html',
+            chunks:['login/mailComplete']
+        })
         
     ],
     devServer:{

@@ -16,11 +16,7 @@ const express_1 = __importDefault(require("express"));
 const promises_1 = __importDefault(require("fs/promises"));
 const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const http_1 = __importDefault(require("http"));
-const socket_io_1 = require("socket.io");
 const app = (0, express_1.default)();
-const server = http_1.default.createServer(app);
-const io = new socket_io_1.Server(server);
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 app.use(/.+\.js$/, (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,12 +31,19 @@ app.use(/.+\.js$/, (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         next();
     }
 }));
+app.get('/login', (req, res) => {
+    res.clearCookie('id');
+    res.clearCookie('hash'); //전에 남아있을 쿠키 지우기
+    res.sendFile('login.html', {
+        root: path_1.default.resolve(__dirname, '..', '..', 'frontend/dist/login')
+    });
+});
 app.get('/', (req, res) => {
     res.sendFile('index.html', {
         root: path_1.default.resolve(__dirname, '..', '..', 'frontend/dist')
     });
 });
-server.listen(80, () => {
+app.listen(80, () => {
     console.log('listening on *:80');
 });
 //# sourceMappingURL=index.js.map

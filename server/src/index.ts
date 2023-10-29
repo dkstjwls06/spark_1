@@ -2,12 +2,10 @@ import express from 'express'
 import fs from 'fs/promises'
 import path from 'path'
 import cookieParser from 'cookie-parser'
-import http from 'http'
-import { Server, Socket } from 'socket.io'
+
+
 const app = express();
 
-const server = http.createServer(app);
-const io = new Server(server);
 
 app.use(cookieParser());
 app.use(express.json());
@@ -23,6 +21,18 @@ app.use(/.+\.js$/, async (req, res, next) => {
     }
 });
 
+app.get('/login', (req, res) => {
+    res.clearCookie('id');
+    res.clearCookie('hash');//전에 남아있을 쿠키 지우기
+    res.sendFile('login.html', { //로그인 페이지 보내기
+        root:path.resolve(__dirname, '..', '..', 'frontend/dist/login')
+    });
+});
+
+
+
+
+
 app.get('/', (req, res) => {
     
     res.sendFile('index.html', {
@@ -30,6 +40,6 @@ app.get('/', (req, res) => {
     });
 });
 
-server.listen(80,()=>{
+app.listen(80,()=>{
     console.log('listening on *:80');
 });
