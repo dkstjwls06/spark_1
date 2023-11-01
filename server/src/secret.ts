@@ -4,6 +4,10 @@ export default {
         id:'love09010224',
         pass:'WLOmfp8jN0pgrAON'
     },
-    secret:'agrehtegs334t2gwat3'
-    
+    address:'http://220.88.26.3:3000',
+    secret:'agrehtegs334t2gwat3',
+    mail: {
+        user:'dkstjwls06@naver.com',
+        pass: 'moonlove'
+    }
 }

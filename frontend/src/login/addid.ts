@@ -16,10 +16,10 @@ button.addEventListener('click', async e => { //버튼 눌렸을때
         });
         const check = (await res.json()) as status;
         if(check.status === 'good'){
-            alert(`Sign up complete. Yay!`);
+            alert(`회원가입에 성공하셨습니다!`);
             location.href = check.url;
         } else {
-            alert(`We're sorry, But u failed sign up process. Reason is: ${check.reason}`);
+            alert(`회원가입에 실패하였습니다. Reason is: ${check.reason}`);
         }
     } 
 });
