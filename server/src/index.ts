@@ -21,7 +21,20 @@ app.use(/.+\.js$/, async (req, res, next) => {
     }
 });
 
+app.get('/mail', (req, res) => {
+    res.sendFile('/mail.html', {
+        root: path.resolve(__dirname,'..','..', 'frontend/dist/login')
+    })
+})
+
+app.get('/favicon.ico',(req,res)=>{
+    res.sendFile('favicon.ico',{
+        root: path.resolve(__dirname,'..','..', 'frontend/img')
+    })
+})
+
 app.use('/img',img)
+
 
 
 app.get('/login', (req, res) => {

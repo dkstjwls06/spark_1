@@ -7,32 +7,92 @@
     <title>Wordcard: Signup</title>
     <!-- <link rel="stylesheet" href="/src/css/main.css"> -->
     <style>
+        @font-face {
+            font-family: 'omyu_pretty';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        *{
+            margin: 0;    
+            box-sizing: border-box;
+            font-family: 'omyu_pretty';
+        }
         body{
-            margin: 0;
+            width: 100vw;
             height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            background-color: rgb(36, 36, 36);
             align-items: center;
+            justify-content: center;
         }
         #con{
-            max-width: 1000px;
+            box-shadow: 5px 5px 5px 5px rgb(31, 31, 31);
             justify-content: center;
+            display: flex;
+            flex-direction: row;
+            background-color: white;
+            width: 92vw;
+            height: calc(100vh - 8vw);
+            border-radius: 20px;
+            text-align: center;
+            
+        }
+        
+        h1{
+            font-size:3vw;
+            color: rgb(0, 0, 0);
+        }
+
+        #lock{
+            width: 100%;
+            height:100%;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        #imgcontainer{
+            width: 65%;
+        }
+        #signuppanel{
+            width: 35%;
+            padding: 15vh 5vw 0 5vw;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        #header{
+            justify-content:left;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            height: 10vh;
+            width: 100%;
+        }
+        
+        #inputcon{
+            border-radius: 10px;
+            height: 15%;
             display: flex;
             flex-direction: column;
         }
-        input, button, select{
-            margin: 10px;
-            color: rgb(39, 230, 214);
-            height: 2em;
-            font-size: 1em;
-            outline: none;
-            border: 1px solid rgb(27, 177, 164);
-        }
+        
+
         span{
-            margin-left:10px;
+            font-size: 0.8vw;
         }
+
+        input{
+            border-radius: 10px;
+            height: 80%;
+            margin: 3% 0;
+            padding: 1vw;
+        }
+
         input:valid{
-            border: 1px solid rgb(27, 177, 164);
+            border: 1px solid rgb(0, 0, 0);
         }
         input:invalid{
             border:1.5px solid red;
@@ -42,53 +102,29 @@
             color:red;
         }
 
-        input[type="text"]:invalid + span::before{
-            content: "need to type between 4 to 20 characters.";
-        }
-        input[type="password"]:invalid + span::before{
-            content: "need to type between 8 to 30 characters.";
-        }
-        input[type="email"]:invalid + span::before{
-            content:"pls type proper email syntax.";
-        }
-        input:active{
-            border: 2px solid red;
-        }
+        
         input[type="password"]{
             display: none;
         }
-        #con{
-            margin: 30% auto 40%;
-            height: 40vh;
-            width: 40vh;
-        }
         
-        *{
-            box-sizing: border-box;
-        }
-        h1{
-            font-size:4vh;
-            padding: 2% 0;
-            color: rgb(58, 204, 204);
-            margin: 0;
-        }
-        #logo{
-            width: 30%;
-            height: 75%;
-            display: inline-block;
-            margin: auto 3%;
-        }
-        #header{
-            justify-content:left;
-            display: flex;
-            flex-direction: row;
-            height: 10vh;
-            width: 100%;
-        }
         
-        input{
+        
+        button{
+            width: 70%;
+            margin: 5px auto;
+            height: 50px;
+            border: none;
+            background-color: rgb(58, 204, 204);
+            color: white;
             border-radius: 10px;
         }
+        button:hover{
+            cursor: pointer;
+            transition: 500ms;
+            background-color: white;
+            color: rgb(58, 204, 204);
+        }
+        
         .etc {
             display: flex;
             align-items: center;
@@ -106,63 +142,30 @@
             text-decoration: underline;
             cursor: pointer;
         }
-        #con{
-            width: 60%;
-            text-align: center;
-            
-        }
-        hr{
-            width: 100%;
-        }
-        input{
-            height: 50px;
-            width: 70%;
-            font-size: 20px;
-            margin:  5px auto;
-        }
         
-        button{
-            width: 70%;
-            margin: 5px auto;
-            height: 50px;
-            border: none;
-            background-color: rgb(58, 204, 204);
-            color: white;
-            border-radius: 10px;
-        }
-        button:hover{
-            cursor: pointer;
-            transition: 500ms;
-            background-color: white;
-            color: rgb(58, 204, 204);
-        }
-        .etc {
-            display: flex;
-            align-items: center;
-            margin: auto;
-        }
-        .etc a {
-            color: gray;
-            text-decoration: none;
-        }
-        .etc a:hover {
-            text-decoration: underline;
-            cursor: pointer;
-        }
     </style>
 <script defer src="../runtime.js"></script><script defer src="../login/mail.js"></script></head>
 <body>
     
     <div id="con">
-        <div id="header">
-            <h1>Sign up to </h1><img src="/img/logo" alt="wordcard" id="logo">
+        <div id="imgcontainer">
+            <img id="lock" src="/img/lock" alt="pic">
         </div>
-        <hr>
-        <input placeholder="새 이메일 입력" minlength="4" maxlength="50" type="email" required><span></span>
-        <input placeholder="새 비밀번호 입력" type="password" minlength="4" maxlength="50" type="email" required><span></span>
-        <button>next</button>
-        <hr>
-        <span class="etc"><a class="etc2" href="/login">Back to Sign in</a></span>
+        <div id="signuppanel">
+            <div id="header">
+                <h1>회원가입</h1>
+            </div>
+
+            <div id="inputcon">
+                <input placeholder="새 이메일" minlength="4" maxlength="50" type="email" required><span></span>
+                <input placeholder="새 비밀번호" type="password" minlength="8" maxlength="30" type="email" required><span></span>    
+            </div>
+        
+            <button>next</button>
+            <span class="etc"><a class="etc2" href="/login">Back to Sign in</a></span>
+
+        </div>
+        
     </div>
     <script>
         // const inputs = [...document.querySelectorAll('input')];

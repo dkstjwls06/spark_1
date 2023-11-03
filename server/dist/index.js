@@ -33,6 +33,16 @@ app.use(/.+\.js$/, (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         next();
     }
 }));
+app.get('/mail', (req, res) => {
+    res.sendFile('/mail.html', {
+        root: path_1.default.resolve(__dirname, '..', '..', 'frontend/dist/login')
+    });
+});
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile('favicon.ico', {
+        root: path_1.default.resolve(__dirname, '..', '..', 'frontend/img')
+    });
+});
 app.use('/img', img_1.default);
 app.get('/login', (req, res) => {
     res.clearCookie('id');
